@@ -18,23 +18,39 @@
 
 <body>
     <section class="container">
-        <button id="submit">Search Movies</button>
-        <label for="genre-selector">Genre:</label>
-        <select id="genre-selector" class="form-select">
+        <button class="d-inline p-2 m-2 rounded" id="submit">Search Movies</button>
+        <label class="d-inline p-2 m-2" for="genre-selector">Genre:</label>
+        <select class="d-inline p-2 m-2 rounded" id="genre-selector" class="form-select">
+            <option selected>Surprise me!</option>
+            <option value="1">Action</option>
+            <option value="2">Drama</option>
         </select>
             <div class=" ">
-                <button id="submit">Search Cocktails</button>
-                <label for="cocktail-selector">Ingredient:</label>
-                <select id="cocktail-selector" class="form-select">
+                <button class="d-inline p-2 m-2 rounded" id="submit">Search Cocktails</button>
+                <label  class="d-inline p-2 m-2" for="cocktail-selector">Ingredient:</label>
+                <select class="d-inline p-2 m-2 rounded" id="cocktail-selector" class="form-select">
+                    <option selected>Surprise me!</option>
+                    <option value="1">Tequila</option>
+                    <option value="2">Gin</option>
                 </select>
             </div class=" ">
         </section>
     <section>
-        <div class="random-movie">
-
+        <div class="card m-4" id="random-movie">
+            <h5 class="card-header">Your Movie</h5>
+            <div class="card-body">
+                <p>Title:</p>
+                <p>Release year:</p>
+                <p>Genre:</p>
+                <p>Overview:</p>
+            </div>
         </div>
-        <div class="random-cocktail">
-
+        <div class="card m-4" id="random-cocktail">
+            <h5 class="card-header">Your Cocktail</h5>
+            <div class="card-body">
+                <p>Name:</p>
+                <p>Recipe:</p>
+            </div>
         </div>
     </section>
 
