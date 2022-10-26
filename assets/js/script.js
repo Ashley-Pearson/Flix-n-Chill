@@ -3,6 +3,7 @@ var movieKey = '34a134b6f5c8f05caaa647f4e9e2c70e';
 var movieUrl = 'https://api.themoviedb.org/3/trending/movie/day?api_key=' + movieKey;
 console.log(movieUrl);
 
+
 // Get random movie
 function randomMovie() {
     fetch(movieUrl)
