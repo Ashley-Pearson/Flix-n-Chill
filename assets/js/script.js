@@ -14,8 +14,15 @@ function randomMovie() {
         .then(function (data) {
             var rndmMovie = data.results;
             var rndmMovieTitle = rndmMovie[Math.floor(Math.random() * rndmMovie.length)].title;
-
-            console.log(rndmMovieTitle);
+            console.log(rndmMovie);
+            $('#movieTitle').append(rndmMovieTitle);
+            for (var i=0; i<rndmMovie.length; i++){
+                if (rndmMovie[i].title == rndmMovieTitle) {
+                    $('#movieYear').append(rndmMovie[i].release_date);
+                    $('#movieOverview').append(rndmMovie[i].overview);
+                    $('#movieGenre').append(rndmMovie[i].genre_ids);
+                }
+            }
         })
         .catch(function () {
             // catch any errors
@@ -38,7 +45,10 @@ function drinkData() {
             //var drink = JSON.stringify(data);
             console.log(data);
             console.log(data.drinks[0].strDrink);
-
+            $('#drinkName').append(data.drinks[0].strDrink);
+            for(var i=1; i<=15; i++){
+            }
+            $('#drinkName').append(data.drinks[0].strDrink);
         })
         .catch(function () {
             // catch any errors
