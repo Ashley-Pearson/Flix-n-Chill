@@ -6,8 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css"
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Rammetto+One&family=Roboto&display=swap" rel="stylesheet">
@@ -17,12 +18,13 @@
 </head>
 
 <header class="container-fluid text-center p-3">
-    <h1>Flix 'N' Chill</h1>
+    <h1 class="animate__animated animate__bounce">Flix 'N' Chill</h1>
 </header>
 
 <body>
     <section class="container">
-        <button class="d-inline p-2 m-2 rounded" id="genre-submit">Search Movies</button>
+
+        <button class="d-inline p-2 m-2 rounded rounded animate__animated animate__pulse" id="genre-submit">Search Movies</button>
         <label class="d-inline p-2 m-2" for="genre-selector">Genre:</label>
         <select class="d-inline p-2 m-2 rounded" id="genre-selector" class="form-select">
             <option selected disabled>Surprise me!</option>
@@ -34,7 +36,9 @@
             <option value="878">Science Fiction</option>
         </select>
             <div class=" ">
-                <button class="d-inline p-2 m-2 rounded" id="cocktail-submit">Search Cocktails</button>
+
+                <button class="d-inline p-2 m-2 rounded animate__animated animate__pulse" id="cocktail-submit">Search Cocktails</button>
+
                 <label  class="d-inline p-2 m-2" for="cocktail-selector">Ingredient:</label>
                 <select class="d-inline p-2 m-2 rounded" id="cocktail-selector" class="form-select">
                     <option selected disabled>Surprise me!</option>
