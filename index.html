@@ -18,16 +18,16 @@
     <title>Flix'n Chill</title>
 </head>
 
-<header class="container-fluid text-center p-3">
+<header class="container-fluid text-center pt-5">
     <h1 class="animate__animated animate__bounce">Flix 'N' Chill</h1>
 </header>
 
 <body>
-    <section class="d-flex flex-column col-12 justify-content-center align-items-center">
-        <div class="row">
-            <div class="col-6">
-                <label class="p-2 m-2 col-2 w-100" for="genre-selector">Genre:</label>
-                <select class="p-2 m-2 w-100 rounded col-2" id="genre-selector" class="form-select">
+    <main class="d-flex flex-column col-12 justify-content-center align-items-center">
+        <div class="row col-6 w-100 justify-content-center">
+            <div class="col-3">
+                <label class="p-2 m-2 w-100 fw-bold" for="genre-selector">Genre:</label>
+                <select class="p-2 m-2 w-100 rounded" id="genre-selector" class="form-select">
                     <option selected value="surprise">Surprise me!</option>
                     <option value="28">Action</option>
                     <option value="35">Comedy</option>
@@ -40,9 +40,9 @@
                     Movies</button>
             </div>
 
-            <div class="col-6">
-                <label class="p-2 m-2 col-2 w-100" for="cocktail-selector">Ingredient:</label>
-                <select class="p-2 m-2 rounded col-2 w-100" id="cocktail-selector" class="form-select">
+            <div class="col-3">
+                <label class="p-2 m-2 w-100 fw-bold" for="cocktail-selector">Ingredient:</label>
+                <select class="p-2 m-2 rounded w-100" id="cocktail-selector" class="form-select">
                     <option selected value="surprise">Surprise me!</option>
                     <option value="1" data-drink="Brandy">Brandy</option>
                     <option value="2" data-drink="Gin">Gin</option>
@@ -52,24 +52,24 @@
                     <option value="6" data-drink="Brandy">Whiskey</option>
 
                 </select>
-                <button class="p-2 m-2 col-2 w-100 rounded animate__animated animate__pulse" id="submit-cocktail">Search
+                <button class="p-2 m-2 w-100 rounded animate__animated animate__pulse" id="submit-cocktail">Search
                     Cocktails</button>
             </div>
         </div>
-        <div class="row col-8 mt-4">
-            <div class="card mb-4">
+        <div class="container-fluid col-8 mt-4">
+            <div class="card mb-4 cardMovie">
                 <h5 class="card-header">Your Movie</h5>
                 <div class="card-body" id="random-movie">
                 </div>
             </div>
-            <div class="card mb-4">
+            <div class="card mb-4 cardCocktail">
                 <h5 class="card-header">Your Cocktail</h5>
                 <div class="card-body" id="random-cocktail">
                 </div>
             </div>
         </div>
 
-    </section>
+    </main>
 
 
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>

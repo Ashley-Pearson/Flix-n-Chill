@@ -5,6 +5,8 @@ var cocktailCard = $("#random-cocktail");
 // API: Trending movies
 var movieUrl = 'https://api.themoviedb.org/3/trending/movie/day?api_key=' + movieKey;
 
+window.onload = $('.card').hide();
+
 // Get random movie
 function randomMovie(url) {
     fetch(url)
@@ -52,6 +54,7 @@ function movieGenre(genreId) {
 }
 
 $("#genre-submit").on('click', function () {
+    $('.cardMovie').show();
     var selectedGenre = $("#genre-selector option:selected").val();
     if (selectedGenre == "surprise") {
         randomMovie(movieUrl);
@@ -117,12 +120,13 @@ function drinkById(rndmDrinkId) {
 
 // Search Cocktail button clicks
 $("#submit-cocktail").on("click", function () {
+    $('.cardCocktail').show();
     var selectedCocktail = $("#cocktail-selector option:selected").val();
     if (selectedCocktail == "surprise") {
         // Get random Cocktail with intructions using API random cocktail
         var drinkUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
         drinkData(drinkUrl);
     } else {
-        drinkBy;
+        drinkBy();
     }
 });
