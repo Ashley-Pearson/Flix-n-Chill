@@ -12,7 +12,7 @@ function randomMovie(url) {
             return resp.json()
         })
         .then(function (data) {
-            var rndmMovie = data.results;         
+            var rndmMovie = data.results;
             var rndmMovieTitleIndex = Math.floor(Math.random() * rndmMovie.length);
             var rndmMovieTitle = rndmMovie[rndmMovieTitleIndex].title;
 
@@ -20,13 +20,12 @@ function randomMovie(url) {
             divMovie.append("<p>Title: <strong>" + rndmMovieTitle);
             divMovie.append("<p>Release Date: " + rndmMovie[rndmMovieTitleIndex].release_date);
             movieGenre(rndmMovie[rndmMovieTitleIndex].genre_ids);
-            divMovie.append("<p>Overview: " + rndmMovie[rndmMovieTitleIndex].overview);            
+            divMovie.append("<p>Overview: " + rndmMovie[rndmMovieTitleIndex].overview);
         })
         .catch(function () {
             // catch any errors
         });
 }
-// window.onload = randomMovie(movieUrl);
 
 function movieGenre(genreId) {
 
@@ -54,14 +53,14 @@ function movieGenre(genreId) {
 
 $("#genre-submit").on('click', function () {
     var selectedGenre = $("#genre-selector option:selected").val();
-    // API: Discovery movies
-    var movieByGenreUrl = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieKey + "&language=en-US&sort_by=popularity.desc&with_genres=" + selectedGenre+"&with_watch_monetization_types=flatrate&include_adult=false&include_video=false&page=1";
-    randomMovie(movieByGenreUrl);
+    if (selectedGenre == "surprise") {
+        randomMovie(movieUrl);
+    } else {
+        // API: Discovery movies
+        var movieByGenreUrl = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieKey + "&language=en-US&sort_by=popularity.desc&with_genres=" + selectedGenre + "&with_watch_monetization_types=flatrate&include_adult=false&include_video=false&page=1";
+        randomMovie(movieByGenreUrl);
+    }
 });
-
-
-// Get random Cocktail with intructions using API random cocktail
-var drinkUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
 function drinkData(srtDrinkUrl) {
 
@@ -74,10 +73,9 @@ function drinkData(srtDrinkUrl) {
             var strDrinks = data.drinks[0];
 
             cocktailCard.append("<p>Name: <strong> " + strDrinks.strDrink);
-cocktailCard.append("<p>Recipe: ");
+            cocktailCard.append("<p>Recipe: ");
             //Loop through 15 ingredients
             for (var i = 1; i <= 15; i++) {
-
                 if ((strDrinks["strIngredient" + i] !== null) && (strDrinks["strMeasure" + i] !== null)) {
                     cocktailCard.append("<li>" + strDrinks["strIngredient" + i] + " " + strDrinks["strMeasure" + i]);
                 }
@@ -89,18 +87,16 @@ cocktailCard.append("<p>Recipe: ");
             // catch any errors
         });
 }
-// drinkData(drinkUrl);
+
 //get array of drinks with user's selected ingredient and select a random drink id from the array
 function drinkBy() {
     var userIngredient = $("#cocktail-selector option:selected").text();
-    console.log(userIngredient);
     var drinkByUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + (userIngredient)
     fetch(drinkByUrl)
         .then(function (response) {
             return response.json()
         })
         .then(function (data) {
-            console.log(data)
             var rndmDrink = data.drinks;
             var rndmDrinkSelected = Math.floor(Math.random() * rndmDrink.length);
             var rndmDrinkId = rndmDrink[rndmDrinkSelected].idDrink;
@@ -108,6 +104,7 @@ function drinkBy() {
             return
         })
 };
+
 //get drink recipe by searching drink id
 function drinkById(rndmDrinkId) {
     var drinkByIdUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + (rndmDrinkId)
@@ -115,7 +112,17 @@ function drinkById(rndmDrinkId) {
         .then(function (response) {
             return response.json()
         })
-            drinkData(drinkByIdUrl);
+    drinkData(drinkByIdUrl);
 };
 
-$("#submit-cocktail").on("click", drinkBy)
+// Search Cocktail button clicks
+$("#submit-cocktail").on("click", function () {
+    var selectedCocktail = $("#cocktail-selector option:selected").val();
+    if (selectedCocktail == "surprise") {
+        // Get random Cocktail with intructions using API random cocktail
+        var drinkUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+        drinkData(drinkUrl);
+    } else {
+        drinkBy;
+    }
+});
