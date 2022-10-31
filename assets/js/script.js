@@ -1,7 +1,7 @@
 var movieKey = '34a134b6f5c8f05caaa647f4e9e2c70e';
 
 var divMovie = $("#random-movie");
-var coctail = $(".random-cocktail");
+var cocktailCard = $("#random-cocktail");
 // API: Trending movies
 var movieUrl = 'https://api.themoviedb.org/3/trending/movie/day?api_key=' + movieKey;
 
@@ -26,7 +26,7 @@ function randomMovie(url) {
             // catch any errors
         });
 }
-window.onload = randomMovie(movieUrl);
+// window.onload = randomMovie(movieUrl);
 
 function movieGenre(genreId) {
 
@@ -41,7 +41,7 @@ function movieGenre(genreId) {
             for (var i = 0; i < genreId.length; i++) {
                 for (var k = 0; k < genres.length; k++) {
                     if (genres[k].id == genreId[i]) {
-                        strGenres += "," + genres[k].name;
+                        strGenres += ", " + genres[k].name;
                     }
                 }
             }
@@ -70,26 +70,27 @@ function drinkData(srtDrinkUrl) {
             return resp.json()
         })
         .then(function (data) {
+            cocktailCard.empty();
             var strDrinks = data.drinks[0];
 
-            $('#drinkName').append("<strong> " + strDrinks.strDrink);
-
+            cocktailCard.append("<p>Name: <strong> " + strDrinks.strDrink);
+cocktailCard.append("<p>Recipe: ");
             //Loop through 15 ingredients
             for (var i = 1; i <= 15; i++) {
 
                 if ((strDrinks["strIngredient" + i] !== null) && (strDrinks["strMeasure" + i] !== null)) {
-                    $('#drinkRecipe').append("<li>" + strDrinks["strIngredient" + i] + " " + strDrinks["strMeasure" + i]);
+                    cocktailCard.append("<li>" + strDrinks["strIngredient" + i] + " " + strDrinks["strMeasure" + i]);
                 }
             }
             //Instructions
-            $('#drinkRecipe').append('<br>Instructions:<br><p class="indent">' + strDrinks.strInstructions);
+            cocktailCard.append('<br>Instructions:<br><p class="indent">' + strDrinks.strInstructions);
         })
         .catch(function () {
             // catch any errors
         });
 }
-drinkData(drinkUrl);
-
+// drinkData(drinkUrl);
+//get array of drinks with user's selected ingredient and select a random drink id from the array
 function drinkBy() {
     var userIngredient = $("#cocktail-selector option:selected").text();
     console.log(userIngredient);
@@ -107,6 +108,7 @@ function drinkBy() {
             return
         })
 };
+//get drink recipe by searching drink id
 function drinkById(rndmDrinkId) {
     var drinkByIdUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + (rndmDrinkId)
     fetch(drinkByIdUrl)
