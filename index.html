@@ -22,22 +22,22 @@
 
 <body>
     <section class="container">
-        <button class="d-inline p-2 m-2 rounded" id="submit">Search Movies</button>
+        <button class="d-inline p-2 m-2 rounded" id="genre-submit">Search Movies</button>
         <label class="d-inline p-2 m-2" for="genre-selector">Genre:</label>
         <select class="d-inline p-2 m-2 rounded" id="genre-selector" class="form-select">
-            <option selected>Surprise me!</option>
-            <option value="1">Action</option>
-            <option value="2">Comedy</option>
-            <option value="3">Drama</option>
-            <option value="4">Horror</option>
-            <option value="5">Romance</option>
-            <option value="6">Science Fiction</option>
+            <option selected disabled>Surprise me!</option>
+            <option value="28">Action</option>
+            <option value="35">Comedy</option>
+            <option value="18">Drama</option>
+            <option value="27">Horror</option>
+            <option value="10749">Romance</option>
+            <option value="878">Science Fiction</option>
         </select>
             <div class=" ">
-                <button class="d-inline p-2 m-2 rounded" id="submit">Search Cocktails</button>
+                <button class="d-inline p-2 m-2 rounded" id="cocktail-submit">Search Cocktails</button>
                 <label  class="d-inline p-2 m-2" for="cocktail-selector">Ingredient:</label>
                 <select class="d-inline p-2 m-2 rounded" id="cocktail-selector" class="form-select">
-                    <option selected>Surprise me!</option>
+                    <option selected disabled>Surprise me!</option>
                     <option value="1">Brandy</option>
                     <option value="2">Gin</option>
                     <option value="3">Rum</option>
@@ -49,13 +49,13 @@
         </section>
 
     <section>
-        <div class="card m-4" id="random-movie">
+        <div class="card m-4">
             <h5 class="card-header">Your Movie</h5>
-            <div class="card-body">
-                <p id="movieTitle">Title: </p>
+            <div class="card-body" id="random-movie">
+                <!-- <p id="movieTitle">Title: </p>
                 <p id="movieYear">Release year: </p>
                 <p id="movieGenre">Genre: </p>
-                <p id="movieOverview">Overview: </p>
+                <p id="movieOverview">Overview: </p> -->
             </div>
         </div>
         <div class="card m-4" id="random-cocktail">
