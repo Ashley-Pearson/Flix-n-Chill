@@ -63,9 +63,9 @@ $("#genre-submit").on('click', function () {
 // Get random Cocktail with intructions using API random cocktail
 var drinkUrl = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 
-function drinkData() {
+function drinkData(srtDrinkUrl) {
 
-    fetch(drinkUrl)
+    fetch(srtDrinkUrl)
         .then(function (resp) {
             return resp.json()
         })
@@ -88,4 +88,32 @@ function drinkData() {
             // catch any errors
         });
 }
-drinkData();
+drinkData(drinkUrl);
+
+function drinkBy() {
+    var userIngredient = $("#cocktail-selector option:selected").text();
+    console.log(userIngredient);
+    var drinkByUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + (userIngredient)
+    fetch(drinkByUrl)
+        .then(function (response) {
+            return response.json()
+        })
+        .then(function (data) {
+            console.log(data)
+            var rndmDrink = data.drinks;
+            var rndmDrinkSelected = Math.floor(Math.random() * rndmDrink.length);
+            var rndmDrinkId = rndmDrink[rndmDrinkSelected].idDrink;
+            drinkById(rndmDrinkId);
+            return
+        })
+};
+function drinkById(rndmDrinkId) {
+    var drinkByIdUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + (rndmDrinkId)
+    fetch(drinkByIdUrl)
+        .then(function (response) {
+            return response.json()
+        })
+            drinkData(drinkByIdUrl);
+};
+
+$("#submit-cocktail").on("click", drinkBy)

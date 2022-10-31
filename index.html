@@ -24,6 +24,7 @@
 <body>
     <section class="container">
 
+
         <button class="d-inline p-2 m-2 rounded rounded animate__animated animate__pulse" id="genre-submit">Search Movies</button>
         <label class="d-inline p-2 m-2" for="genre-selector">Genre:</label>
         <select class="d-inline p-2 m-2 rounded" id="genre-selector" class="form-select">
@@ -36,18 +37,17 @@
             <option value="878">Science Fiction</option>
         </select>
             <div class=" ">
-
-                <button class="d-inline p-2 m-2 rounded animate__animated animate__pulse" id="cocktail-submit">Search Cocktails</button>
-
+                <button class="d-inline p-2 m-2 rounded animate__animated animate__pulse" id="submit-cocktail">Search Cocktails</button>
                 <label  class="d-inline p-2 m-2" for="cocktail-selector">Ingredient:</label>
                 <select class="d-inline p-2 m-2 rounded" id="cocktail-selector" class="form-select">
-                    <option selected disabled>Surprise me!</option>
-                    <option value="1">Brandy</option>
-                    <option value="2">Gin</option>
-                    <option value="3">Rum</option>
-                    <option value="4">Tequila</option>
-                    <option value="5">Vodka</option>
-                    <option value="6">Whiskey</option>
+                    <option selected>Surprise me!</option>
+                    <option value="1" data-drink="Brandy">Brandy</option>
+                    <option value="2" data-drink="Gin">Gin</option>
+                    <option value="3" data-drink="Rum">Rum</option>
+                    <option value="4" data-drink="Tequila">Tequila</option>
+                    <option value="5" data-drink="Brandy">Vodka</option>
+                    <option value="6" data-drink="Brandy">Whiskey</option>
+
                 </select>
             </div class=" ">
         </section>
