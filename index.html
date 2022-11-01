@@ -23,9 +23,9 @@
 </header>
 
 <body>
-    <main class="d-flex flex-column col-12 justify-content-center align-items-center">
-        <div class="row col-6 w-100 justify-content-center">
-            <div class="col-3">
+    <main class="d-flex flex-column flex-wrap col-lg-12 justify-content-center align-items-center">
+        <div class="row col-lg-9 w-100 justify-content-center">
+            <div class="col-lg-3">
                 <label class="p-2 m-2 w-100 fw-bold" for="genre-selector">Genre:</label>
                 <select class="p-2 m-2 w-100 rounded" id="genre-selector" class="form-select">
                     <option selected value="surprise">Surprise me!</option>
@@ -40,7 +40,7 @@
                     Movies</button>
             </div>
 
-            <div class="col-3">
+            <div class="col-lg-3">
                 <label class="p-2 m-2 w-100 fw-bold" for="cocktail-selector">Ingredient:</label>
                 <select class="p-2 m-2 rounded w-100" id="cocktail-selector" class="form-select">
                     <option selected value="surprise">Surprise me!</option>
@@ -55,8 +55,10 @@
                 <button class="p-2 m-2 w-100 rounded animate__animated animate__pulse" id="submit-cocktail">Search
                     Cocktails</button>
             </div>
+            <div id="prevSearch" class="col-lg-3">
+            </div>
         </div>
-        <div class="container-fluid col-8 mt-4">
+        <div class="row col-lg-9 mt-4">
             <div class="card mb-4 cardMovie">
                 <h5 class="card-header">Your Movie</h5>
                 <div class="card-body" id="random-movie">

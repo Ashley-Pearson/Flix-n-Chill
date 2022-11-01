@@ -21,7 +21,7 @@ THEN I am presented with a random movie and cocktail recipe
 
 
 ## Mock Up
-![](assets/Screen%20Shot%202022-10-27%20at%208.55.07%20PM.png)
+![](./assets/img/demo.jpg)
 
 
 ## Deployed Application
