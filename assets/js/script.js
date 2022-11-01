@@ -5,15 +5,13 @@ var cocktailCard = $("#random-cocktail");
 // API: Trending movies
 var movieUrl = 'https://api.themoviedb.org/3/trending/movie/day?api_key=' + movieKey;
 
-window.onload = function() {
+window.onload = function () {
     $('.card').hide();
     $('#prevSearch').hide();
     if (localStorage.length > 0) {
         getLocalStorageData();
     };
-    
 };
-
 
 // Get random movie
 function randomMovie(url) {
@@ -37,8 +35,8 @@ function randomMovie(url) {
         });
 }
 
+// Get movie by genre
 function movieGenre(genreId) {
-
     var movieGenreURL = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + movieKey + "&language=en-US";
     fetch(movieGenreURL)
         .then(function (resp) {
@@ -74,7 +72,6 @@ $("#genre-submit").on('click', function () {
 });
 
 function drinkData(srtDrinkUrl) {
-
     fetch(srtDrinkUrl)
         .then(function (resp) {
             return resp.json()
@@ -93,7 +90,14 @@ function drinkData(srtDrinkUrl) {
             }
             //Instructions
             cocktailCard.append('<br>Instructions:<br><p class="indent">' + strDrinks.strInstructions);
-            addToLocalStorage(strDrinks.strDrink);
+
+            var dataFlixNChill = localStorage.getItem("flixnchill");
+            dataFlixNChill = JSON.parse(dataFlixNChill);
+
+            if ((dataFlixNChill == null) || (dataFlixNChill.some(code => code.name === strDrinks.strDrink) == false)){
+                addToLocalStorage(strDrinks.strDrink);
+            }
+            getLocalStorageData();
         })
         .catch(function () {
             // catch any errors
@@ -113,7 +117,6 @@ function drinkBy() {
             var rndmDrinkSelected = Math.floor(Math.random() * rndmDrink.length);
             var rndmDrinkId = rndmDrink[rndmDrinkSelected].idDrink;
             drinkById(rndmDrinkId);
-            addToLocalStorage(strDrinks.strDrink);
             return
         })
 };
@@ -131,6 +134,7 @@ function drinkById(rndmDrinkId) {
 // Search Cocktail button clicks
 $("#submit-cocktail").on("click", function () {
     $('.cardCocktail').show();
+    
     var selectedCocktail = $("#cocktail-selector option:selected").val();
     if (selectedCocktail == "surprise") {
         // Get random Cocktail with intructions using API random cocktail
@@ -143,60 +147,51 @@ $("#submit-cocktail").on("click", function () {
 
 // Display previously search results
 $(document).on('click', '#txtPrevSearch', function () {
-    $('#prevSearch').show();
+
     var drinkName = $(this).val();
     var drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + drinkName;
-    drinkData2(drinkUrl);
-    
- })
- 
- function drinkData2(srtDrinkUrl) {
+    drinkData(drinkUrl);
 
-    fetch(srtDrinkUrl)
-        .then(function (resp) {
-            return resp.json()
-        })
-        .then(function (data) {
-            cocktailCard.empty();
-            var strDrinks = data.drinks[0];
+    $('.cardCocktail').show();
+    $('#prevSearch').show();
+})
 
-            cocktailCard.append("<p>Name: <strong> " + strDrinks.strDrink);
-            cocktailCard.append("<p>Recipe: ");
-            //Loop through 15 ingredients
-            for (var i = 1; i <= 15; i++) {
-                if ((strDrinks["strIngredient" + i] !== null) && (strDrinks["strMeasure" + i] !== null)) {
-                    cocktailCard.append("<li>" + strDrinks["strIngredient" + i] + " " + strDrinks["strMeasure" + i]);
-                }
-            }
-            //Instructions
-            cocktailCard.append('<br>Instructions:<br><p class="indent">' + strDrinks.strInstructions);
-        })
-        .catch(function () {
-            // catch any errors
-        });
+//Clear localStorage
+$(document).on('click', '#clearSearch', function () {
+    localStorage.clear();
+    drinks = [];
+    $('#prevSearch').empty();
+    $('#prevSearch').hide();
+    $('.cardCocktail').hide();
+})
+
+var drinks = [];
+// Store search in localStorage
+function addToLocalStorage(text) {
+    var id = drinks.length;
+    var drinkToStore = {
+        id: id,
+        name: text
+    };
+    drinks.push(drinkToStore);
+    localStorage.setItem("flixnchill", JSON.stringify(drinks));
 }
- // Store search in localStorage
- function addToLocalStorage(text) {
-     var id = localStorage.length;
-     localStorage.setItem(id+1, text);
-     getLocalStorageData();
- }
- 
- //Clear localStorage
- $(document).on('click', '#clearSearch', function () {
-     localStorage.clear();
-     $('#prevSearch').empty();
-     $('#prevSearch').hide();
- })
- // Get previously search results
- function getLocalStorageData() {
-     $('#prevSearch').empty();
-     $('#prevSearch').show();
-     if (localStorage.length > 0) {
-         $('#prevSearch').append('<input type="button" class="rounded w-100 mb-2 btn-danger .clearBth" id="clearSearch" value="Clear Search">');
-         $('#prevSearch').append('<hr><label>Previously Chosen Cocktail');
-         for (var x = 1; x <= localStorage.length; x++) {
-             $('#prevSearch').append('<input type="button" id="txtPrevSearch" class="rounded w-100 mb-2" value="' + localStorage.getItem(x) + '">');
-         }
-     }
- }
+
+// Get previously search results
+function getLocalStorageData() {
+    $('#prevSearch').empty();
+    $('#prevSearch').show();
+
+    var dataFlixNChill = localStorage.getItem("flixnchill");
+    dataFlixNChill = JSON.parse(dataFlixNChill);
+
+    if (dataFlixNChill) {
+        drinks = dataFlixNChill;
+        $('#prevSearch').append('<input type="button" class="rounded w-100 mb-2 btn-danger .clearBth" id="clearSearch" value="Clear Search">');
+        $('#prevSearch').append('<hr><label>Previously Chosen Cocktail');
+
+        for (var x = 0; x < dataFlixNChill.length; x++) {
+            $('#prevSearch').append('<input type="button" id="txtPrevSearch" class="rounded w-100 mb-2" value="' + dataFlixNChill[x].name + '">');
+        }
+    }
+}
