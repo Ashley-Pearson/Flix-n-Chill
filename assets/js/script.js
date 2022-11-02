@@ -163,6 +163,7 @@ $(document).on('click', '#clearSearch', function () {
     $('#prevSearch').empty();
     $('#prevSearch').hide();
     $('.cardCocktail').hide();
+    $('.random-cocktail').empty();
 })
 
 var drinks = [];
