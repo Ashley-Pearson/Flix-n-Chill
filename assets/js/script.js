@@ -2,6 +2,10 @@ var movieKey = '34a134b6f5c8f05caaa647f4e9e2c70e';
 
 var divMovie = $("#random-movie");
 var cocktailCard = $("#random-cocktail");
+// Get the modal
+var modal = document.getElementById("myModal");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 // API: Trending movies
 var movieUrl = 'https://api.themoviedb.org/3/trending/movie/day?api_key=' + movieKey;
 
@@ -11,6 +15,7 @@ window.onload = function () {
     if (localStorage.length > 0) {
         getLocalStorageData();
     };
+    modal.style.display = "none";
 };
 
 // Get random movie
@@ -94,7 +99,7 @@ function drinkData(srtDrinkUrl) {
             var dataFlixNChill = localStorage.getItem("flixnchill");
             dataFlixNChill = JSON.parse(dataFlixNChill);
 
-            if ((dataFlixNChill == null) || (dataFlixNChill.some(code => code.name === strDrinks.strDrink) == false)){
+            if ((dataFlixNChill == null) || (dataFlixNChill.some(code => code.name === strDrinks.strDrink) == false)) {
                 addToLocalStorage(strDrinks.strDrink);
             }
             getLocalStorageData();
@@ -134,7 +139,7 @@ function drinkById(rndmDrinkId) {
 // Search Cocktail button clicks
 $("#submit-cocktail").on("click", function () {
     $('.cardCocktail').show();
-    
+
     var selectedCocktail = $("#cocktail-selector option:selected").val();
     if (selectedCocktail == "surprise") {
         // Get random Cocktail with intructions using API random cocktail
@@ -164,7 +169,21 @@ $(document).on('click', '#clearSearch', function () {
     $('#prevSearch').hide();
     $('.cardCocktail').hide();
     $('.random-cocktail').empty();
+
+    modal.style.display = "block";
 })
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
 
 var drinks = [];
 // Store search in localStorage
